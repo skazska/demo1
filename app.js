@@ -74,7 +74,7 @@ MongoClient.connect("mongodb://ersCloud:375612@localhost:27017/ersCloud", functi
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
-    if (!res.xStatusCode || (res.xStatusCode && res.statusCode < 400)) res.statusCode = err.status||500;
+    if (!res.xStatusCode || (res.xStatusCode && res.xStatusCode < 400)) res.statusCode = err.status||500;
     res.setHeader('Content-Type', res.xContentType||'text');
     res.end(err.stack);
     next(err);
@@ -83,7 +83,7 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
   app.use(function(err, req, res, next) {
-    if (!res.xStatusCode || (res.xStatusCode && res.statusCode < 400)) res.statusCode = err.status||500;
+    if (!res.xStatusCode || (res.xStatusCode && res.xStatusCode < 400)) res.statusCode = err.status||500;
     res.setHeader('Content-Type', res.xContentType||'text');
     res.end(err.message);
     next(err);
