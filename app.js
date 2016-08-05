@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 //mongo DB used for mapping and store
 var MongoClient = require('mongodb').MongoClient;
 // Use connect method to connect to the Server
-MongoClient.connect("mongodb://ersCloud:375612@localhost:27017/ersCloud", function(err, db) {
+MongoClient.connect("mongodb://localhost:27017/test", function(err, db) {    //use appropriate connection string
 
   if (err) {
     console.error(new Error('db failed'));
@@ -44,6 +44,7 @@ MongoClient.connect("mongodb://ersCloud:375612@localhost:27017/ersCloud", functi
     if (res.xData||res.xStatusCode) {
       if (res.xContentType) {
         res.setHeader('Content-Type', res.xContentType);
+        res.status(res.xStatusCode);
         if (res.xContentType == 'application/json'){
           res.end(JSON.stringify(res.xData, null, 2));
         } else {
