@@ -9,13 +9,13 @@ module.exports = function(db){
   return {
     getRoot: function(req, res, next){
       col.find({_id: req.params.requestId}).limit(1).next(function(err, values){
+        delete values._id;
         res.xSet(200, values, next);
       })
     },
     postRoot: function(req, res, next){
       if (req.body.requestId) {
         var id = req.body.requestId;
-        delete req.body.requestId;
         col.updateOne({_id:id.toString()}, {$set: req.body}, { upsert : true })
           .then(
             function(r) {
