@@ -56,4 +56,76 @@ install dependencies: `npm install`
 
 in projects root folder `demo1` run `npm start` to start on port 3000 or `PORT=8080  npm start` for 8080.
 
+### usage
 
+POST 1:
+
+    curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 44444555-fa11-3571-4203-a14c4ca3b742" -d '{
+        "requestId": 1,
+        "something": "something"
+    }' "http://localhost:8080/api"
+
+result: 200 OK
+
+    {
+      "requestId": 1,
+      "something": "something"
+    }
+
+GET 1:
+
+    curl -X GET -H "Cache-Control: no-cache" -H "Postman-Token: 4c5b5ec3-00ad-4c20-4ddc-1f0d8e28dcba" "http://localhost:8080/api/1"
+    
+result: 200 OK
+
+    {
+      "requestId": 1,
+      "something": "something"
+    }
+    
+
+POST 2:
+
+    curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 4dec1195-6a59-8567-2648-c908f6d0db89" -d '{
+        "requestId": 2,
+        "variable1": ["Ders", "masr"],
+        "variable2": 2,
+        "variable3": {"one": 1, "two": "2"}
+    }' "http://localhost:8080/api"
+
+result: 200 OK
+
+    {
+      "requestId": 2,
+      "variable1": [
+        "Ders",
+        "masr"
+      ],
+      "variable2": 2,
+      "variable3": {
+        "one": 1,
+        "two": "2"
+      }
+    }
+
+
+GET 2:
+
+    curl -X GET -H "Cache-Control: no-cache" -H "Postman-Token: b76dcc3b-6adb-0054-9d06-ab75c6cbb5e6" "http://localhost:8080/api/2"
+    
+result: 200 OK
+
+    {
+      "requestId": 2,
+      "variable1": [
+        "Ders",
+        "masr"
+      ],
+      "variable2": 2,
+      "variable3": {
+        "one": 1,
+        "two": "2"
+      }
+    }
+    
+    

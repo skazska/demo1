@@ -16,7 +16,8 @@ module.exports = function(db){
     postRoot: function(req, res, next){
       if (req.body.requestId) {
         var id = req.body.requestId;
-        col.updateOne({_id:id.toString()}, {$set: req.body}, { upsert : true })
+//        col.updateOne({_id:id.toString()}, {$set: req.body}, { upsert : true })
+        col.updateOne({_id:id.toString()}, req.body, { upsert : true })
           .then(
             function(r) {
               req.body.requestId = id;
