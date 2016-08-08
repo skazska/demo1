@@ -19,10 +19,11 @@ module.exports = function(db){
         col.updateOne({_id:id.toString()}, {$set: req.body}, { upsert : true })
           .then(
             function(r) {
-              res.xSet(202, r, next);
+              req.body.requestId = id;
+              res.xSet(200, req.body, next);
             },
             function(err) {
-              res.xSet(501, err, next);
+              res.xSet(500, err, next);
             }
           );
       }
